@@ -61,6 +61,11 @@ impl MemoryDB {
             storage: Arc::new(RwLock::new(HashMap::new())),
         }
     }
+
+    /// Create a new MemoryDB with a given storage. This is useful for walking partial tries or in other words state diffs.
+    pub fn new_with_storage(light: bool, storage: Arc<RwLock<HashMap<Vec<u8>, Vec<u8>>>>) -> Self {
+        MemoryDB { light, storage }
+    }
 }
 
 impl DB for MemoryDB {
